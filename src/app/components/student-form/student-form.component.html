@@ -1,0 +1,25 @@
+<!-- student-form.component.html -->
+<div class="form-container">
+  <h2>{{ studentId ? 'Edit Student' : 'Add Student' }}</h2>
+  <form [formGroup]="studentForm" (ngSubmit)="onSubmit()">
+    <div class="form-field">
+      <label for="name">Name</label>  
+      <input id="name" type="text" formControlName="name" />
+      <div *ngIf="studentForm.get('name')?.invalid && studentForm.get('name')?.touched">
+        <small *ngIf="studentForm.get('name')?.errors?.['required']">Name is required</small>
+      </div>
+    </div>
+    <div class="form-field">
+      <label for="email">Email</label>
+      <input id="email" type="email" formControlName="email" />
+      <div *ngIf="studentForm.get('email')?.invalid && studentForm.get('email')?.touched">
+        <small *ngIf="studentForm.get('email')?.errors?.['required']">Email is required</small>
+        <small *ngIf="studentForm.get('email')?.errors?.['email']">Invalid email format</small>
+      </div>
+    </div>
+    <div class="form-buttons">
+      <button type="submit" [disabled]="studentForm.invalid">Save</button>
+      <button type="button" (click)="cancel()">Cancel</button>
+    </div>
+  </form>
+</div>

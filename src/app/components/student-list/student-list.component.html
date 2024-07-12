@@ -1,0 +1,26 @@
+<!-- student-list.component.html -->
+<div class="student-list-container">
+  <h1>Student List</h1>
+  <button class="add-button" routerLink="/students/add">Add Student</button>
+  <table class="student-table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let student of students">
+        <td>{{ student.id }}</td>
+        <td>{{ student.name }}</td>
+        <td>{{ student.email }}</td>
+        <td>
+          <button class="edit-button" (click)="editStudent(student.id)">Edit</button>
+          <button class="delete-button" (click)="onDelete(student.id)">Delete</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
